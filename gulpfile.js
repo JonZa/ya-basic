@@ -38,7 +38,7 @@ var notify = require('gulp-notify');
 
 var handlebars = require('gulp-compile-handlebars');
 
-gulp.task('handlebars', function() {
+gulp.task('handlebars', function () {
 	console.log('\x1b[31m', ' 👍   handlebars   👌', '\x1b[0m');
 	var templateData = {},
 		options = {
@@ -57,22 +57,24 @@ gulp.task('handlebars', function() {
 });
 
 // Start browserSync server
-gulp.task('browserSync', function() {
+gulp.task('browserSync', function () {
 	browserSync.init({
-		server: {
-			baseDir: "./build"
+		watch: true,
+		server: './build',
+		watchOptions: {
+			awaitWriteFinish: true
 		}
 	});
 });
 
 // Copy fonts task
-gulp.task('fonts', function() {
+gulp.task('fonts', function () {
 	console.log('\x1b[31m', ' 👍   fonts   👌', '\x1b[0m');
 	return gulp.src('assets/fonts/*.{eot,svg,ttf,woff,woff2}').pipe(gulp.dest('build/assets/fonts/'));
 });
 
 // Start stylesheets task
-gulp.task('stylesheets', function() {
+gulp.task('stylesheets', function () {
 	console.log('\x1b[31m', ' 👍   stylesheets   👌', '\x1b[0m');
 	return gulp
 		.src('assets/scss/style.scss') // Get all *.scss files
@@ -90,7 +92,7 @@ gulp.task('stylesheets', function() {
 
 // Start scripts task
 
-gulp.task('scripts', function() {
+gulp.task('scripts', function () {
 	console.log('\x1b[31m', ' 👍   scripts   👌', '\x1b[0m');
 	return gulp
 		.src(['assets/js/site.js'])
@@ -100,7 +102,7 @@ gulp.task('scripts', function() {
 });
 
 // Start images task
-gulp.task('images', function() {
+gulp.task('images', function () {
 	console.log('\x1b[31m', ' 👍   images   👌', '\x1b[0m');
 	return gulp
 		.src('assets/img/**/*')
@@ -119,7 +121,7 @@ gulp.task('images', function() {
 		.pipe(gulp.dest('./build/assets/img'));
 });
 // Start webp task
-gulp.task('webp', function() {
+gulp.task('webp', function () {
 	console.log('\x1b[31m', ' 👍   webp   👌', '\x1b[0m');
 	return gulp
 		.src(['assets/img/**/*.{jpg,png}'])
@@ -129,7 +131,7 @@ gulp.task('webp', function() {
 });
 
 // Start watch groups of tasks
-gulp.task('default', ['browserSync', 'stylesheets', 'handlebars', 'scripts', 'images', 'webp', 'fonts'], function() {
+gulp.task('default', ['browserSync', 'stylesheets', 'handlebars', 'scripts', 'images', 'webp', 'fonts'], function () {
 	console.log('\x1b[31m', ' 👍   default   👌', '\x1b[0m');
 	gulp.watch('assets/scss/**/*.scss', ['stylesheets']); // Watch for SCSS changes
 	gulp.watch('assets/js/**/*.js', ['scripts']); // Watch for JS changes
@@ -138,8 +140,7 @@ gulp.task('default', ['browserSync', 'stylesheets', 'handlebars', 'scripts', 'im
 	gulp.watch('assets/img/**/*.jpg', ['webp']); // Watch for jpg changes
 	gulp.watch('assets/handlebars/**/*.html', ['handlebars']); // Watch for template changes
 	gulp.watch('source/**/*.html', ['handlebars']); // Watch for template changes
-	gulp.watch('build/**/*', browserSync.reload);
 });
 
 // Start build task
-gulp.task('build', ['handlebars', 'stylesheets', 'scripts', 'images', 'fonts', 'webp'], function() {});
+gulp.task('build', ['handlebars', 'stylesheets', 'scripts', 'images', 'fonts', 'webp'], function () { });
