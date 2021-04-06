@@ -17,7 +17,7 @@
 		"gulp-rename": "^2.0.0",
 		"gulp-replace": "1.0.0",
 		"gulp-sass": "^4.1.0",
-		"gulp-strip-debug": "3.0.0",
+		"gulp-strip-debug": "4.0.0",
 		"gulp-uglify-es": "^2.0.0",
 		"imagemin-mozjpeg": "^8.0.0",
 		"imagemin-webp": "^6.0.0"
